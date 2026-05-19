@@ -1,101 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
   // App State Data
   const state = {
-    name: "Kevin Christoper L. Viardo",
-    address: "574 Magnolia Street Hilltop Homes Subdivision, Consolacion, Cebu, 6001",
-    dob: "December 26, 1991",
-    email: "christoperviardo@gmail.com",
-    linkedin: "https://www.linkedin.com/in/kevin-viardo/",
-    summary: "Results-driven Operations Leader and Account Manager with 12+ years of expertise leading high-performing teams, overseeing up to 150+ FTEs and 11 Team Leaders. Proven track record of managing account financials, driving CSAT pilots, and optimizing training and quality processes for elite tech and telecom brands like Google and Brightspeed. Expert in SLA/KPI delivery, change management, and client relationship management.",
+    name: "",
+    address: "",
+    dob: "",
+    email: "",
+    linkedin: "",
+    summary: "",
     skills: {
-      ops: [
-        "Operations Management",
-        "Strategic Planning",
-        "Account Financials",
-        "Change Leadership",
-        "SLA & KPI Delivery",
-        "Client Relations"
-      ],
-      proc: [
-        "Training Logistics",
-        "Quality Calibrations",
-        "Curriculum Development",
-        "Process Improvement",
-        "4DX Methodology",
-        "Business Process Control"
-      ],
-      tech: [
-        "Data Analytics",
-        "Technical Support",
-        "Client Engagement",
-        "Workforce Management",
-        "Escalations Management",
-        "Microsoft Windows"
-      ]
+      ops: ["", "", ""],
+      proc: ["", "", ""],
+      tech: ["", "", ""]
     },
-    jobs: [
-      {
-        title: "Account Manager (Operations / Training and Quality)",
-        company: "Sykes Asia – Google & Brightspeed",
-        start: "April 2020",
-        end: "October 2024",
-        location: "Cebu, PH",
-        details: [
-          "Oversaw operations and performance for multiple Lines of Business (LOBs), managing teams of up to 150+ FTEs and mentoring 11 Operations Team Leaders.",
-          "Directed account financials and budget optimization strategies, consistently achieving 98.5% budget alignment and cost efficiency.",
-          "Led high-level business review sessions (WBR, MBR, QBR) with executive stakeholders to align strategic outcomes.",
-          "Spearheaded critical client initiatives, including a new product launch and a CSAT pilot project that boosted client satisfaction scores by 12%.",
-          "Formulated and implemented structured performance mitigation and action plans, ensuring the account exceeded targets by 5%."
-        ]
-      },
-      {
-        title: "Account Supervisor (Training and Quality)",
-        company: "Sykes Asia – Google",
-        start: "June 2019",
-        end: "March 2020",
-        location: "Cebu, PH",
-        details: [
-          "Directed 4 core operational support groups: Subject Matter Experts (SME), Training, Quality Assurance, and Business Process Control (BPC).",
-          "Pioneered targeted training and process improvement initiatives, achieving a 15% reduction in agent ramp-up time.",
-          "Optimized curriculum development and delivery logistics, boosting new-hire certification success rates to 96%.",
-          "Managed client-calibrated Quality Control programs, conducting strategic process alignment Audits."
-        ]
-      },
-      {
-        title: "Subject Matter Expert Lead",
-        company: "Sykes Asia – Google",
-        start: "April 2018",
-        end: "June 2019",
-        location: "Cebu, PH",
-        details: [
-          "Led a specialized support team of 6 SMEs managing product support across 3 separate Lines of Business (LOBs).",
-          "Orchestrated executive-level and client-escalated ticket resolutions, achieving a 98% first-contact resolution SLA.",
-          "Served as the primary Site Process Leader, aligning local operational standards with international client guidelines."
-        ]
-      },
-      {
-        title: "Subject Matter Expert & Technical Support Agent",
-        company: "Sykes Asia – Google",
-        start: "September 2017",
-        end: "April 2018",
-        location: "Cebu, PH",
-        details: [
-          "Promoted from Technical Support Agent to SME within 3 months of hire due to exceptional performance metrics.",
-          "Conducted targeted coaching and technical assistance for agents to support core competency growth."
-        ]
-      }
-    ],
+    jobs: [],
     education: {
-      degree: "BS in Nursing (Undergraduate studies)",
-      school: "Cebu Normal University",
-      year: "2008 – 2012"
+      degree: "",
+      school: "",
+      year: ""
     },
-    trainings: [
-      { name: "4DX Methodology" },
-      { name: "Change Leadership" },
-      { name: "Project Management" },
-      { name: "Data Analytics" }
-    ]
+    trainings: []
   };
 
   // Select Static DOM Elements
@@ -682,6 +605,34 @@ document.addEventListener('DOMContentLoaded', () => {
     window.print();
   });
 
+  // Clear button listener
+  const clearBtn = document.getElementById('clear-btn');
+  clearBtn.addEventListener('click', () => {
+    if (!confirm('Clear all fields and start fresh?')) return;
+    window.clearCV();
+  });
+
+  // Expose clearCV globally
+  window.clearCV = () => {
+    // Reset state to blank
+    state.name = ''; state.address = ''; state.dob = '';
+    state.email = ''; state.linkedin = ''; state.summary = '';
+    state.skills = { ops: ['','',''], proc: ['','',''], tech: ['','',''] };
+    state.jobs = [];
+    state.education = { degree: '', school: '', year: '' };
+    state.trainings = [];
+    state.photo = null;
+
+    // Reset photo
+    photoImg.src = '';
+    photoImg.style.display = 'none';
+    photoPlaceholder.style.display = 'flex';
+    photoInput.value = '';
+
+    // Re-render everything
+    init();
+  };
+
   // Expose global functions for auth.js to save/load state
   window.getCurrentCV = () => {
     return {
@@ -713,8 +664,15 @@ document.addEventListener('DOMContentLoaded', () => {
       photoImg.style.display = 'none';
       photoPlaceholder.style.display = 'flex';
     }
+
+    // Restore education input field values
+    if (state.education) {
+      eduDegreeInput.value = state.education.degree || '';
+      eduSchoolInput.value = state.education.school || '';
+      eduYearInput.value   = state.education.year   || '';
+    }
     
-    // Re-run initialization to sync preview and skills/jobs editors
+    // Re-run initialization to sync preview and skills/jobs/trainings editors
     init();
   };
 

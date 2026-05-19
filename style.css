@@ -457,6 +457,8 @@ body.dark .remove-btn:hover {
   padding: 1.25rem 1.5rem;
   border-top: 1px solid var(--border);
   display: flex;
+  flex-direction: row;
+  gap: 0.65rem;
   background-color: var(--bg-sidebar);
   flex-shrink: 0;
 }
