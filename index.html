@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kevin Christoper Viardo - CV / Resume Builder</title>
+  <meta name="description" content="Interactive Professional CV and Resume of Kevin Christoper Viardo - Operations and Account Manager.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- TOP NAVIGATION SUBMENUS -->
+  <nav class="top-nav">
+    <div class="nav-brand">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+      CV Builder Suite
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">CV Editor</a>
+      <a href="tracker.html" class="nav-link">Job Tracker</a>
+    </div>
+    <div class="user-panel" id="user-panel"></div>
+  </nav>
+
+  <div class="app-container">
+    <!-- SIMPLIFIED SCROLLABLE SIDEBAR (Screen view only) -->
+    <aside class="editor-sidebar">
+      <div class="sidebar-header">
+        <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Light/Dark Theme">
+          <!-- Icon injected dynamically -->
+        </button>
+      </div>
+
+      <div class="scrollable-editor">
+        
+        <!-- Theme Settings -->
+        <div class="editor-section-divider" style="margin-top: 0;">Color Theme</div>
+        <div class="theme-selector">
+          <button class="theme-btn theme-blue active" data-theme="blue" title="Slate & Blue"></button>
+          <button class="theme-btn theme-emerald" data-theme="emerald" title="Slate & Emerald"></button>
+          <button class="theme-btn theme-rose" data-theme="rose" title="Slate & Rose"></button>
+          <button class="theme-btn theme-violet" data-theme="violet" title="Slate & Violet"></button>
+        </div>
+
+        <!-- 1. Name -->
+        <div class="input-field">
+          <label for="input-name">Name</label>
+          <input type="text" id="input-name" data-sync="name" value="Kevin Christoper L. Viardo">
+        </div>
+
+        <!-- 2. Address -->
+        <div class="input-field">
+          <label for="input-address">Address</label>
+          <input type="text" id="input-address" data-sync="address" value="574 Magnolia Street Hilltop Homes Subdivision, Consolacion, Cebu, 6001">
+        </div>
+
+        <!-- 3. Date of Birth -->
+        <div class="input-field">
+          <label for="input-dob">Date of Birth</label>
+          <input type="text" id="input-dob" data-sync="dob" value="December 26, 1991">
+        </div>
+
+        <!-- 4. Email -->
+        <div class="input-field">
+          <label for="input-email">Email</label>
+          <input type="email" id="input-email" data-sync="email" value="christoperviardo@gmail.com">
+        </div>
+
+        <!-- 5. LinkedIn URL -->
+        <div class="input-field">
+          <label for="input-linkedin">LinkedIn URL</label>
+          <input type="url" id="input-linkedin" data-sync="linkedin" value="https://www.linkedin.com/in/kevin-viardo/">
+        </div>
+
+        <!-- 6. Professional Summary -->
+        <div class="input-field">
+          <label for="input-summary">Professional Summary</label>
+          <textarea id="input-summary" data-sync="summary">Results-driven Operations Leader and Account Manager with 12+ years of expertise leading high-performing teams, overseeing up to 150+ FTEs and 11 Team Leaders. Proven track record of managing account financials, driving CSAT pilots, and optimizing training and quality processes for elite tech and telecom brands like Google and Brightspeed. Expert in SLA/KPI delivery, change management, and client relationship management.</textarea>
+        </div>
+
+        <!-- 7. Core Competencies (Dynamic Lists) -->
+        <div class="editor-section-divider">Core Competencies</div>
+        
+        <div class="skills-editor-section">
+          <div class="skills-group-header">Ops & Leadership</div>
+          <div id="skills-ops-inputs" class="dynamic-list-container">
+            <!-- Injected by app.js -->
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="add-skill-ops-btn">+ Add Skill</button>
+        </div>
+
+        <div class="skills-editor-section">
+          <div class="skills-group-header">Process & Quality</div>
+          <div id="skills-proc-inputs" class="dynamic-list-container">
+            <!-- Injected by app.js -->
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="add-skill-proc-btn">+ Add Skill</button>
+        </div>
+
+        <div class="skills-editor-section">
+          <div class="skills-group-header">Technical & Tools</div>
+          <div id="skills-tech-inputs" class="dynamic-list-container">
+            <!-- Injected by app.js -->
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="add-skill-tech-btn">+ Add Skill</button>
+        </div>
+
+        <!-- 8. Professional Experience -->
+        <div class="editor-section-divider">Professional Experience</div>
+        <div id="experience-editor-container" class="dynamic-list-container">
+          <!-- Injected by app.js -->
+        </div>
+        <button type="button" class="btn btn-secondary" id="add-job-btn">+ Add Job Entry</button>
+
+        <!-- 9. Education -->
+        <div class="editor-section-divider">Education</div>
+        <div class="input-field">
+          <label for="input-edu-degree">Degree / Program</label>
+          <input type="text" id="input-edu-degree">
+        </div>
+        <div class="input-field">
+          <label for="input-edu-school">School / University</label>
+          <input type="text" id="input-edu-school">
+        </div>
+        <div class="input-field">
+          <label for="input-edu-year">Year Range</label>
+          <input type="text" id="input-edu-year" placeholder="e.g. 2008 – 2012">
+        </div>
+
+        <!-- 10. Key Trainings -->
+        <div class="editor-section-divider">Key Trainings</div>
+        <div id="trainings-editor-container" class="dynamic-list-container">
+          <!-- Injected by app.js -->
+        </div>
+        <button type="button" class="btn btn-secondary" id="add-training-btn">+ Add Training</button>
+
+        <!-- 11. Upload Picture -->
+        <div class="editor-section-divider">Profile Photo</div>
+        <div class="input-field">
+          <label for="input-picture">Upload Picture</label>
+          <input type="file" id="input-picture" accept="image/*">
+        </div>
+
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="print-btn" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14" rx="1"/></svg>
+          Export PDF / Print
+        </button>
+      </div>
+    </aside>
+
+    <!-- FLOATING TOGGLE SIDEBAR BUTTON (Screen view only) -->
+    <button id="toggle-sidebar" class="toggle-sidebar-btn" title="Toggle Full Preview">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+
+    <!-- RESUME PREVIEW AREA -->
+    <main class="preview-area">
+      <article class="resume-paper" id="resume-document">
+        
+        <!-- Header Section (Name + Contact details below name + Image top right) -->
+        <header class="resume-header">
+          <div class="header-main-info">
+            <h1 data-sync-target="name">Kevin Christoper L. Viardo</h1>
+            
+            <div class="contact-info-strip">
+              <span class="contact-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span data-sync-target="address">Consolacion, Cebu, Philippines</span>
+              </span>
+              <span class="contact-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span data-sync-target="dob">December 26, 1991</span>
+              </span>
+              <span class="contact-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                <a href="mailto:christoperviardo@gmail.com" data-sync-target="email">christoperviardo@gmail.com</a>
+              </span>
+              <span class="contact-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                <a href="https://www.linkedin.com/in/kevin-viardo/" target="_blank" data-sync-target="linkedin">linkedin.com/in/kevin-viardo/</a>
+              </span>
+            </div>
+          </div>
+          
+          <div class="header-photo-area">
+            <div id="profile-photo-box" class="profile-photo-box">
+              <img id="profile-photo-img" src="" alt="Profile Photo" style="display: none;">
+              <div id="profile-photo-placeholder" class="profile-photo-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Summary Section -->
+        <section class="resume-section resume-section-summary">
+          <h3 class="section-title">Professional Summary</h3>
+          <p data-sync-target="summary">
+            Results-driven Operations Leader and Account Manager with 12+ years of expertise leading high-performing teams, overseeing up to 150+ FTEs and 11 Team Leaders. Proven track record of managing account financials, driving CSAT pilots, and optimizing training and quality processes for elite tech and telecom brands like Google and Brightspeed. Expert in SLA/KPI delivery, change management, and client relationship management.
+          </p>
+        </section>
+
+        <!-- Core Competencies Section -->
+        <section class="resume-section resume-section-skills">
+          <h3 class="section-title">Core Competencies</h3>
+          <div class="skills-grid">
+            <div class="skills-category">
+              <span class="skills-category-name">Ops & Leadership</span>
+              <div class="skills-list" id="skills-ops-preview">
+                <!-- Badges injected dynamically -->
+              </div>
+            </div>
+            <div class="skills-category">
+              <span class="skills-category-name">Process & Quality</span>
+              <div class="skills-list" id="skills-proc-preview">
+                <!-- Badges injected dynamically -->
+              </div>
+            </div>
+            <div class="skills-category">
+              <span class="skills-category-name">Technical & Tools</span>
+              <div class="skills-list" id="skills-tech-preview">
+                <!-- Badges injected dynamically -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="resume-section resume-section-experience">
+          <h3 class="section-title">Professional Experience</h3>
+          <div class="experience-list" id="experience-preview">
+            <!-- Job entries injected dynamically by app.js -->
+          </div>
+        </section>
+
+        <!-- Education & Certifications Section -->
+        <section class="resume-section">
+          <div class="education-cert-container">
+            
+            <div class="education-item">
+              <h3 class="section-title">Education</h3>
+              <div id="education-preview" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                <!-- Injected by app.js -->
+              </div>
+            </div>
+
+            <div class="education-item">
+              <h3 class="section-title">Key Trainings</h3>
+              <div class="cert-grid" id="trainings-preview" style="margin-top: 0.5rem;">
+                <!-- Injected by app.js -->
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </article>
+    </main>
+
+  </div>
+
+  <script src="app.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
