@@ -629,6 +629,12 @@ document.addEventListener('DOMContentLoaded', () => {
     photoPlaceholder.style.display = 'flex';
     photoInput.value = '';
 
+    // Clear basic field inputs
+    basicFields.forEach(field => {
+      const input = document.getElementById(`input-${field}`);
+      if (input) input.value = '';
+    });
+
     // Re-render everything
     init();
   };
